@@ -1,0 +1,21 @@
+.navbar {
+  height: 60px;
+  background-color: aqua;
+  border-bottom: 1px solid #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.LogArea {
+  font-weight: bolder;
+  margin-right: 60px;
+  font-size: 30px;
+}
+
+.LinkArea {
+  span {
+    font-size: 18px;
+    padding: 0 20px;
+  }
+}
