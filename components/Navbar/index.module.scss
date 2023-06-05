@@ -1,6 +1,6 @@
 .navbar {
   height: 60px;
-  background-color: aqua;
+  background-color: #ffff;
   border-bottom: 1px solid #f1f1f1;
   display: flex;
   align-items: center;
@@ -17,5 +17,9 @@
   span {
     font-size: 18px;
     padding: 0 20px;
+    color: #515767;
+  }
+  .active {
+    color: blue;
   }
 }
