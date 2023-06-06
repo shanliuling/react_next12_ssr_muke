@@ -4,9 +4,21 @@ import styles from './index.module.scss'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Button } from 'antd'
+import { useState } from 'react'
+import Login from 'components/Login'
 const Navbar: NextPage = () => {
   const { pathname } = useRouter()
-
+  const [isShowLogin, setIsShowLogin] = useState(false) // 是否显示登录弹窗
+  const handleGotoEditorPage = () => {}
+  const handleLogin = () => {
+    setIsShowLogin(true)
+  }
+  const handleClose = () => {
+    setIsShowLogin(false)
+  }
+  const handleOk = () => {
+    setIsShowLogin(false)
+  }
   return (
     <div className={styles.navbar}>
       <section className={styles.LogArea}>BLOG - 江承泰</section>
@@ -25,9 +37,12 @@ const Navbar: NextPage = () => {
         })}
       </section>
       <section className={styles.operationArea}>
-        <Button>写文章</Button>
-        <Button>登录</Button>
+        <Button onClick={handleGotoEditorPage}>写文章</Button>
+        <Button type="primary" onClick={handleLogin}>
+          登录
+        </Button>
       </section>
+      <Login isShow={isShowLogin} onClose={handleClose} onOk={handleOk} />
     </div>
   )
 }
