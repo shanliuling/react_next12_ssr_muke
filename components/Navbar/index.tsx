@@ -13,12 +13,7 @@ const Navbar: NextPage = () => {
   const handleLogin = () => {
     setIsShowLogin(true)
   }
-  const handleClose = () => {
-    setIsShowLogin(false)
-  }
-  const handleOk = () => {
-    setIsShowLogin(false)
-  }
+
   return (
     <div className={styles.navbar}>
       <section className={styles.LogArea}>BLOG - 江承泰</section>
@@ -42,7 +37,7 @@ const Navbar: NextPage = () => {
           登录
         </Button>
       </section>
-      <Login isShow={isShowLogin} onClose={handleClose} onOk={handleOk} />
+      <Login isShow={isShowLogin} onSetIsShowLogin={setIsShowLogin} />
     </div>
   )
 }

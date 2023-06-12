@@ -1,39 +1,91 @@
-import { Modal } from 'antd'
-import React from 'react'
-
+import { Button, Input, Modal } from 'antd'
+import { ChangeEvent, useState } from 'react'
+import styles from './index.module.scss'
+import CountDown from 'components/CountDown'
+import { UserOutlined, CopyOutlined } from '@ant-design/icons'
 interface IProps {
   isShow: boolean
-  onClose: () => void
-  onOk: () => void
+  onSetIsShowLogin: any
 }
 const Login = (props: IProps) => {
-  const [form, setForm] = React.useState({
+  const [form, setForm] = useState({
     phone: '',
     verify: '',
   })
-  const handleGetVerifyCode = () => {}
+  const handleFormChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setForm({
+      ...form, //保留原来的值
+      [name]: value, //覆盖原来的值
+    })
+  }
+  //验证码
+  const handleGetVerifyCode = () => {
+    setisShowVerifyCode(true)
+  }
+  const [isShowVerifyCode, setisShowVerifyCode] = useState(false)
+  const handleCountDownEnd = () => {
+    setisShowVerifyCode(false)
+  }
+
+  //
+  const onOk = () => {
+    props.onSetIsShowLogin(false)
+  }
+
+  const onClose = () => {
+    props.onSetIsShowLogin(false)
+  }
+
+  const handleOAuthGithub = () => {}
   return (
     <Modal
-      title="登录弹框"
+      maskClosable={false}
+      title="手机号登录"
+      okText="登录"
+      cancelText="取消"
       open={props.isShow}
-      onOk={props.onOk}
-      onCancel={props.onClose}>
-      <input
-        value={form.phone}
-        name="phone"
-        type="text"
+      onOk={onOk}
+      onCancel={onClose}>
+      <Input
+        size="large"
         placeholder="请输入手机号"
+        prefix={<UserOutlined />}
+        value={form.phone}
+        onChange={handleFormChange}
+        name="phone"
       />
-      <div className={styles.verifyCodeArea}>
-        <input
-          value={form.verify}
-          name="verify"
-          type="text"
-          placeholder="请输入验证码"
-        />
-        <span onClick={handleGetVerifyCode} className={styles.verifyCode}>
+      <Input
+        style={{ marginTop: 10, marginBottom: 10, width: 200 }}
+        size="large"
+        placeholder="请输入验证码"
+        prefix={<CopyOutlined />}
+        value={form.verify}
+        onChange={handleFormChange}
+        name="verify"
+      />
+      {isShowVerifyCode ? (
+        <CountDown time={10} onEnd={handleCountDownEnd} />
+      ) : (
+        <Button
+          onClick={handleGetVerifyCode}
+          style={{ marginLeft: 20, width: 150 }}>
           点击获取验证码
-        </span>
+        </Button>
+      )}
+
+      <Button
+        type="link"
+        className={styles.otherLogin}
+        danger
+        onClick={handleOAuthGithub}>
+        使用 GitHub 登录
+      </Button>
+      <div className={styles.loginPrivacy}>
+        登录即代表您已同意
+        <a href="https://moco.imooc.com/privacy.html" target="_blank">
+          《用户隐私协议》
+        </a>
       </div>
     </Modal>
   )
