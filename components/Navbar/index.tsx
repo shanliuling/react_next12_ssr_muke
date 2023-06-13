@@ -16,7 +16,7 @@ const Navbar: NextPage = () => {
 
   return (
     <div className={styles.navbar}>
-      <section className={styles.LogArea}>BLOG - 江承泰</section>
+      <section className={styles.LogArea}>BLOG - 医广</section>
       <section className={styles.LinkArea}>
         {navs?.map((item) => {
           return (
