@@ -50,16 +50,18 @@ const Login = (props: IProps) => {
 
   //
   const onOk = () => {
-    requestInstance('api/user/login', {
-      ...form,
-    }).then((res: any) => {
-      if (res.code === 0) {
-        message.success('登录成功')
-        props.onSetIsShowLogin(false)
-      } else {
-        message.error(res.msg || '未知错误:登录失败')
-      }
-    })
+    requestInstance
+      .post('api/user/login', {
+        ...form,
+      })
+      .then((res: any) => {
+        if (res.code === 0) {
+          message.success('登录成功')
+          props.onSetIsShowLogin(false)
+        } else {
+          message.error(res.msg || '未知错误:登录失败')
+        }
+      })
     props.onSetIsShowLogin(false)
   }
 
