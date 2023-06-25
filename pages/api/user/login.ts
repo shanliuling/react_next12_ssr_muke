@@ -5,10 +5,9 @@ import { ironOptions } from 'config/index'
 //  ironOptions 是加密的配置 你可以在config/index.ts里面配置
 export default withIronSessionApiRoute(Login, ironOptions)
 
-// 告诉我res和req是做什么的
-
+//
 async function Login(req: NextApiRequest, res: NextApiResponse) {
   const { phone = '', verify = '' } = req.body
   console.log(phone, verify)
-  res.status(200).json({ code: 0, msg: '登录成功' })
+  res.status(200).json({ phone, verify, code: 0, msg: '登录成功' })
 }
