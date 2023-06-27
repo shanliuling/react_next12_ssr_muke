@@ -53,6 +53,7 @@ const Login = (props: IProps) => {
     requestInstance
       .post('api/user/login', {
         ...form,
+        identity_type: 'phone', //登录类型
       })
       .then((res: any) => {
         if (res.code === 0) {

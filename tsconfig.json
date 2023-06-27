@@ -18,6 +18,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "experimentalDecorators": true, // 是一个 TypeScript 编译器选项，它用于启用实验性的装饰器功能。装饰器是一种特殊类型的声明，它可以附加到类声明、方法、访问符、属性或参数上。装饰器使用 @expression 这种形式，其中 expression 必须求值为一个函数，它在运行时被调用，被装饰的声明信息作为参数传入。
+    "emitDecoratorMetadata": true, // 是一个 TypeScript 编译器选项，它用于为装饰器声明生成设计类型元数据。这些元数据可以用来在运行时为装饰器声明执行一些特殊操作。emitDecoratorMetadata 选项需要和 experimentalDecorators 选项一起使用。
     "baseUrl": ".",
     "paths": {
       "@/components/*": [

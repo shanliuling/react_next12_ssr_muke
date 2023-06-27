@@ -1,0 +1,15 @@
+{
+  "presets": [
+    "next/babel" // 用于编译 next.js 项目
+  ],
+  "plugins": [
+    "babel-plugin-transform-typescript-metadata", // 用于编译 TypeScript 装饰器
+    [
+      "@babel/plugin-proposal-decorators", // 用于编译 TypeScript 装饰器  
+      {
+        "legacy": true
+      }
+    ],
+    "@babel/plugin-proposal-class-properties" // 用于编译 TypeScript 装饰器 
+  ]
+}
