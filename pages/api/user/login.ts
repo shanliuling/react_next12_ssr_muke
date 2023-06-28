@@ -26,13 +26,27 @@ async function Login(req: NextApiRequest, res: NextApiResponse) {
       },
       relations: ['user'],
     })
+
+    if (userAuth) {
+      // 已存在的用户
+    } else {
+      // 新用户,自动注册
+      const user = new User()
+      user.nickname = `用户_${phone}`
+      user.avatar = '/images/111.png'
+      user.job = '暂无'
+      user.introduce = '暂无'
+      const userAuth = new UserAuths()
+      userAuth.identity_type = identity_type
+      userAuth.identifier = phone
+      userAuth.credential = session.verifyCode
+      userAuth.user = user // 关联user
+
+      const resUserAuth = await userAuthRepo.save(userAuth) // 保存userAuth
+
+      console.log('resUserAuth', resUserAuth)
+    }
   }
-  if (userAuth) {
-    // 已存在的用户
-  } else {
-    // 新用户,自动注册
-    const user = new User()
-    user.nickname = `用户_${phone}`
-  }
+
   res.status(200).json({ phone, verify, code: 0, msg: '登录成功' })
 }
