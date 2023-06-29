@@ -4,12 +4,15 @@ import styles from './index.module.scss'
 import CountDown from 'components/CountDown'
 import { UserOutlined, CopyOutlined } from '@ant-design/icons'
 import requestInstance from 'service/fetch'
-
+import { useStore } from 'store/index'
 interface IProps {
   isShow: boolean
   onSetIsShowLogin: any
 }
 const Login = (props: IProps) => {
+  const store = useStore()
+  console.log('store', store)
+
   const [form, setForm] = useState({
     phone: '',
     verify: '',
@@ -57,6 +60,8 @@ const Login = (props: IProps) => {
       })
       .then((res: any) => {
         if (res.code === 0) {
+          store.user.setUserInfo(res.data)
+
           message.success('登录成功')
           props.onSetIsShowLogin(false)
         } else {

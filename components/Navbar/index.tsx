@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { Button } from 'antd'
 import { useState } from 'react'
 import Login from 'components/Login'
+import { navs} from 'store/index'
 const Navbar: NextPage = () => {
   const { pathname } = useRouter()
   const [isShowLogin, setIsShowLogin] = useState(false) // 是否显示登录弹窗
