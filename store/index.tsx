@@ -4,11 +4,13 @@ import React, { ReactElement, createContext } from 'react'
 // enableStaticRendering 用于服务端渲染，如果是服务端渲染，那么就不需要使用 mobx-react-lite 来渲染组件
 import { useLocalObservable, enableStaticRendering } from 'mobx-react-lite'
 import createStore, { IStore } from './rootStore'
+
 interface IProps {
   children: ReactElement
   initialValue: Record<any, any>
 }
-enableStaticRendering(true)
+enableStaticRendering(!process.browser) // 如果是服务端渲染，那么就不需要使用 mobx-react-lite 来渲染组件
+
 const StoreContext = createContext({})
 
 export const StoreProvider = ({ initialValue, children }: IProps) => {

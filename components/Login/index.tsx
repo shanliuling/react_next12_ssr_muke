@@ -5,6 +5,7 @@ import CountDown from 'components/CountDown'
 import { UserOutlined, CopyOutlined } from '@ant-design/icons'
 import requestInstance from 'service/fetch'
 import { useStore } from 'store/index'
+import { observer } from 'mobx-react-lite'
 interface IProps {
   isShow: boolean
   onSetIsShowLogin: any
@@ -129,4 +130,4 @@ const Login = (props: IProps) => {
   )
 }
 
-export default Login
+export default observer(Login)
