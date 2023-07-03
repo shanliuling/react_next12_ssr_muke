@@ -17,7 +17,7 @@ export const StoreProvider = ({ initialValue, children }: IProps) => {
   const store: IStore = useLocalObservable(createStore(initialValue))
   return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
 }
-
+1
 export const useStore = () => {
   const store: IStore = React.useContext(StoreContext) as IStore
   if (!store) {

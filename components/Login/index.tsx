@@ -75,8 +75,14 @@ const Login = (props: IProps) => {
   const onClose = () => {
     props.onSetIsShowLogin(false)
   }
+  // Client secrets 99b5c3eabe7d9dca7ab4ebb2b795c45eef2622cd
+  // Client ID   55f016ec57581f96e090
+  const handleOAuthGithub = () => {
+    window.open(
+      `https://github.com/login/oauth/authorize?client_id=55f016ec57581f96e090&redirect_uri=http://localhost:3000/api/oauth/redirect`
+    )
+  }
 
-  const handleOAuthGithub = () => {}
   return (
     <Modal
       maskClosable={false}
